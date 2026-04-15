@@ -45,7 +45,9 @@ python train.py
 - 每个 epoch 结束后，会自动保存模型检查点至 ./checkPoints/ 目录。
 - 控制台会实时输出各项损失值及特征相似度指标，便于监控训练效果。
 - 训练完成后，最终模型权重保存在 ./checkPoints/ 下，命名格式示例：1.0learning rate halvedPGLA_batch4_epoch100_WIN200_cuda0_epoch_99.pth
+- 
 🏄 测试流程
+
 1. 测试前准备
 （1）数据集结构
 将测试数据集（如 TNO、RoadScene、MSRS_test）按以下目录结构存放至项目中：
@@ -68,6 +70,7 @@ python test.py
 - 测试过程中，将对每个测试集的红外-可见光图像逐对进行融合。
 - 自动计算并输出 EN（熵）、SD（标准差）、SF（空间频率）、SCD（空间相关性）、VIF（视觉信息保真度）、Qabf（融合质量评价）、SSIM（结构相似性）等客观评价指标。
 - 融合结果默认以 PNG 格式保存至 test_result/数据集名称/ 目录下（默认保存彩色融合结果）。
+
 📁 项目结构
 PGLA-Fusion/
 ├── .idea/          # IDE 配置文件（可忽略）
@@ -88,10 +91,15 @@ PGLA-Fusion/
 ├── requirements.txt # 项目依赖列表
 ├── README.md       # 项目说明文档（本文档）
 └── .gitignore      # Git 忽略文件
+
 ⚙️ 关键参数说明（config.yaml）
+
 参数
+
 说明
+
 示例值
+
 hardware.gpu_id
 使用的 GPU 编号（单卡填0，多卡填对应编号）
 0
@@ -119,6 +127,7 @@ model.num_heads
 data.train_h5_path
 训练用 H5 数据文件的路径
 ./data/MSRS_train_imgsize_128_stride_200.h5
+
 📝 注意事项
 - 确保 CUDA 版本与 PyTorch 版本匹配（本文档使用 CUDA 11.1，对应 PyTorch 1.8.1+cu111）。
 - 预处理脚本 prepare_data.py 需与数据集格式匹配，若数据集结构变更，需修改脚本。
