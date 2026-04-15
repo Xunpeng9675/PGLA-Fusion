@@ -72,7 +72,10 @@ python test.py
 - 融合结果默认以 PNG 格式保存至 test_result/数据集名称/ 目录下（默认保存彩色融合结果）。
 
 # 📁 项目结构
-"
+
+# 📁 项目结构
+
+```text
 PGLA-Fusion/
 ├── .idea/          # IDE 配置文件（可忽略）
 ├── checkPoints/    # 训练保存的模型权重
@@ -91,7 +94,7 @@ PGLA-Fusion/
 ├── test.py         # 测试主脚本
 ├── requirements.txt # 项目依赖列表
 ├── README.md       # 项目说明文档（本文档）
-└── .gitignore      # Git 忽略文件"
+└── .gitignore      # Git 忽略文件
 
 # ⚙️ 关键参数说明（config.yaml）
 
