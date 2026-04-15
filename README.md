@@ -73,8 +73,6 @@ python test.py
 
 # 📁 项目结构
 
-# 📁 项目结构
-
 ```text
 PGLA-Fusion/
 ├── .idea/          # IDE 配置文件（可忽略）
@@ -98,41 +96,19 @@ PGLA-Fusion/
 
 # ⚙️ 关键参数说明（config.yaml）
 
-参数
+| 参数 | 说明 | 示例值 |
+|------|------|--------|
+| `hardware.gpu_id` | 使用的 GPU 编号（单卡填0，多卡填对应编号） | `0` |
+| `train.batch_size` | 训练批大小（根据 GPU 显存调整） | `4` |
+| `train.num_epochs` | 训练总轮数 | `100` |
+| `train.lr` | 初始学习率 | `1e-4` |
+| `loss_weights.ssim` | SSIM 损失的权重 | `0.5` |
+| `loss_weights.perceptual` | VGG 感知损失的权重 | `0.1` |
+| `model.dim` | 语义特征编码器内部维度 | `64` |
+| `model.num_heads` | 注意力机制的头数 | `8` |
+| `data.train_h5_path` | 训练用 H5 数据文件的路径 | `./data/MSRS_train_imgsize_128_stride_200.h5` |
 
-说明
-
-示例值
-
-hardware.gpu_id
-使用的 GPU 编号（单卡填0，多卡填对应编号）
-0
-train.batch_size
-训练批大小（根据 GPU 显存调整）
-4
-train.num_epochs
-训练总轮数
-100
-train.lr
-初始学习率
-1e-4
-loss_weights.ssim
-SSIM 损失的权重
-0.5
-loss_weights.perceptual
-VGG 感知损失的权重
-0.1
-model.dim
-语义特征编码器内部维度
-64
-model.num_heads
-注意力机制的头数
-8
-data.train_h5_path
-训练用 H5 数据文件的路径
-./data/MSRS_train_imgsize_128_stride_200.h5
-
-📝 注意事项
+# 📝 注意事项
 - 确保 CUDA 版本与 PyTorch 版本匹配（本文档使用 CUDA 11.1，对应 PyTorch 1.8.1+cu111）。
 - 预处理脚本 prepare_data.py 需与数据集格式匹配，若数据集结构变更，需修改脚本。
 - 训练时若出现显存不足，可减小 train.batch_size 或调整图像输入尺寸。
