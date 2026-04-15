@@ -1,4 +1,4 @@
-PGLA-Fusion：渐进式图引导与局部注意力红外与可见光图像融合
+# PGLA-Fusion：渐进式图引导与局部注意力红外与可见光图像融合
 本仓库是论文 PGLA-Fusion 的官方实现。该方法采用双流编解码器架构，通过语义特征编码器与渐进式纹理编码器，分别对基础语义特征和细节纹理特征进行渐进式融合，并引入多种损失函数引导网络学习。
 
 📌 主要特点
@@ -19,7 +19,7 @@ conda activate PGLA
 # 安装依赖
 pip install -r requirements.txt
 
-# 安装 PyTorch（示例：CUDA 11.1）
+# 安装 PyTorch
 pip install torch==1.8.1+cu111 torchvision==0.9.1+cu111 torchaudio==0.8.1 -f https://download.pytorch.org/whl/torch_stable.html
 📂 数据准备
 下载 MSRS 数据集
