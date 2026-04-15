@@ -1,0 +1,65 @@
+# ============================================
+# PGLA-Fusion 训练配置文件
+# ============================================
+
+# 硬件配置
+hardware:
+  gpu_id: 1                    # 使用的GPU编号
+  device: "cuda"               # cuda 或 cpu
+  num_workers: 0               # DataLoader进程数
+
+# 数据配置
+data:
+  train_h5_path: "data/dataSet4Training_imgsize_128_stride_200.h5"
+  # 如果后续有验证集，可以在这里添加
+  # val_h5_path: "data/val.h5"
+
+# 模型配置
+model:
+  # 编码器/解码器参数
+  dim: 64
+  num_heads: 8
+  detail_num_layers: 1
+  # 预训练权重路径
+  vgg_weight_path: "model/vgg16-397923af.pth"
+
+# 训练配置
+train:
+  seed: 42                     # 随机种子
+  batch_size: 8
+  num_epochs: 3                # 可以改成实际训练的epoch数，比如5
+  windows_size: 11
+
+  # 梯度裁剪
+  clip_grad_norm_value: 1.0
+
+  # 优化器参数
+  lr: 0.00005                   # 1e-4
+  weight_decay: 0
+
+  # 学习率调度器（CosineAnnealingLR）
+  scheduler:
+    type: "CosineAnnealingLR"
+    T_max: 3                   # 应该等于 num_epochs
+    eta_min: 0.000001          # 1e-6
+
+# 测试配置
+test:
+  ckpt_path: "/home_data/teacher03/guoxunpeng/PGLA-Fusion-Project/checkPoints/clip/1.0mkmmd_batch8_epoch3_WIN11_cuda1_0.pth"
+# 损失函数权重
+loss_weights:
+  ssim: 5.0
+  mse: 1.0
+  tv: 5.0
+  decomp: 2.0                   # cc分解损失
+  nice: 0.1                     # infoNCE损失
+  cc_basic: 2.0                 # 基础CC损失
+  gauss: 1.0
+  laplace: 1.0
+  perceptual: 1.0               # 感知损失权重（之前是隐式的1.0）
+
+# 日志与保存
+logging:
+  save_dir: "checkPoints/clip/"
+  result_name_prefix: "mkmmd"   # 你原来用的前缀
+  log_interval: 10              # 每多少batch打印一次（如果需要的话）
